@@ -1,0 +1,23 @@
+﻿@model WebFPTShop.Models.Customer
+@{
+    ViewBag.Title = "Login";
+  
+}
+
+<p class="router"><a href="/">Trang chủ</a> / Đăng nhập</p>
+<div class="form-container">
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <h1>Đăng nhập</h1>
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.EmailCus, "Tên đăng nhập:")
+            @Html.TextBoxFor(Model => Model.EmailCus, new { required = "required" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.PassCus, "Mật khẩu:")
+            @Html.PasswordFor(Model => Model.PassCus, new { required = "required" })
+        </div>
+        <button type="submit">Đăng nhập</button>
+    }
+</div>

@@ -1,0 +1,39 @@
+﻿@model WebFPTShop.Models.AdminUser
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <h1 class="text-center">Admin Login</h1>
+                <div class="card-body">
+                    @using (Html.BeginForm("Login", "AdminUser", FormMethod.Post, new { @class = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NameUser, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.NameUser, new { @class = "form-control", required = "required" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PasswordUser, new { @class = "control-label" })
+                            @Html.PasswordFor(model => model.PasswordUser, new { @class = "form-control", required = "required" })
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jquery")
+
+@Scripts.Render("~/bundles/bootstrap")

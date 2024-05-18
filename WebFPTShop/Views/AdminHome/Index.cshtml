@@ -1,0 +1,32 @@
+﻿@model List<WebFPTShop.Models.TopSellingProductViewModel>
+
+@{
+    ViewBag.Title = "Sản phẩm bán chạy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Hình ảnh</th>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng bán</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                    <tr>
+                        <td><img alt="@product.NamePro" height="60" src="~/Content/Images/@product.ImagePro"/></td>
+                        <td>@product.ProductID</td>
+                        <td>@product.NamePro</td>
+                        <td>@product.QuantitySold</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>

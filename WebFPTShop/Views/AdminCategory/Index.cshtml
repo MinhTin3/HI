@@ -1,0 +1,118 @@
+﻿@model IEnumerable<WebFPTShop.Models.CategoryViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Kết hợp với _AdminLayout
+    ViewBag.Title = "Danh sách danh mục";
+}
+
+<a class="btn btn-primary" href="@Url.Action("Create", "AdminCategory")">
+    <i class="fas fa-plus"></i> Thêm danh mục
+</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Icon</th>
+            <th>ID</th>
+            <th>Tên danh mục</th>
+            <th>Số sản phẩm</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td><i class="@category.CateIcon"></i></td>
+                <td>@category.IDCate</td>
+                <td>@category.NameCate</td>
+                <td>@category.ProductCount</td>
+
+
+                <td>
+                    @if (Model.Count() >= 5)
+                    {
+                        @Html.ActionLink("Details", "Details", new { id = category.IDCate }, new { @class = "btn btn-primary btn-sm" })
+                    }
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = category.IDCate }, new { @class = "btn btn-warning btn-sm" })
+
+                    <!-- Button to trigger the delete modal -->
+                    <button class="btn btn-danger btn-sm btn-delete" data-id="@category.IDCate" data-toggle="modal" data-target="#deleteModal">
+                        Xóa
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="error-message" class="alert alert-danger" style="display:none;"></div>
+<!-- Bootstrap delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa danh mục</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có muốn xóa danh mục này?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var categoryIdToDelete;
+
+            $(".btn-delete").click(function () {
+                categoryIdToDelete = $(this).data("id");
+            });
+
+            // Confirm delete action
+            $("#confirmDelete").click(function () {
+                $.ajax({
+                    url: '@Url.Action("Delete", "AdminCategory")',
+                    type: 'POST',
+                    data: { id: categoryIdToDelete },
+                    success: function (result) {
+                        if (result.success) {
+                            location.reload();
+                        } else {
+                            // Hiển thị thông báo lỗi
+                            $("#error-message").html(result.message);
+                            $("#error-message").show();
+
+                            // Ẩn thông báo sau 3 giây
+                            setTimeout(function () {
+                                $("#error-message").hide();
+                            }, 3000);
+                        }
+                    },
+                    error: function () {
+                        // Xử lý lỗi Ajax nếu có
+                        $("#error-message").html("Đã xảy ra lỗi khi thực hiện xóa.");
+                        $("#error-message").show();
+
+                        // Ẩn thông báo sau 3 giây
+                        setTimeout(function () {
+                            $("#error-message").hide();
+                        }, 3000);
+                    }
+                });
+                $('#deleteModal').modal('hide'); 
+            });
+
+            // Đóng thông báo lỗi khi nút đóng được nhấp
+            $("#error-message .close").click(function () {
+                $("#error-message").hide();
+            });
+        });
+    </script>
+}

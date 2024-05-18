@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Kho hàng";
+}
+
+<div class="d-flex justify-content-between align-items-center">
+    <div>
+   
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Hình ảnh</th>
+                    <th>ID</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng tồn</th>
+                    <th>Số lượng bán</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in ViewBag.InStockProducts)
+                {
+                    <tr>
+                        <td><img src="~/Content/Images/@product.ImagePro" alt="Product Image" style="max-height: 100px;" /></td>
+                        <td>@product.ProductID</td>
+                        <td>@product.NamePro</td>
+                        <td>@product.Price</td>
+                        <td>@product.SoLuongTon</td>
+                        <td>@product.SoLuongBan</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <h1 class="h2 text-center">Hàng cần nhập</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Hình ảnh</th>
+                    <th>ID</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng tồn</th>
+                    <th>Số lượng bán</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in ViewBag.ProductsToRestock)
+                {
+                    <tr>
+                        <td><img src="~/Content/Images/@product.ImagePro" alt="Product Image" style="max-height: 100px;" /></td>
+                        <td>@product.ProductID</td>
+                        <td>@product.NamePro</td>
+                        <td>@product.Price</td>
+                        <td>@product.SoLuongTon</td>
+                        <td>@product.SoLuongBan</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

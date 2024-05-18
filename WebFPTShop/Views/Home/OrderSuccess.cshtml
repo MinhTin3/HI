@@ -1,0 +1,135 @@
+﻿@model List<WebFPTShop.Models.CartItem>
+@if (ViewBag.Order != null)
+{
+    <script>
+        $(document).ready(function () {
+            // Show the success popup
+            $("#successPopup").show();
+        });
+    </script>
+}
+<div id="successPopup" class="popup-form">
+    <div class="popup-content">
+        <span class="close-popup-btn" onclick="closePopup()"><i class="fa-solid fa-x"></i></span>
+        <h2>Đặt hàng thành công</h2>
+        <p>Cảm ơn bạn đã đặt hàng. Thông tin đơn hàng của bạn đã được gửi.</p>
+
+    </div>
+</div>
+
+<script>
+    function closePopup() {
+        // Close the success popup
+        $("#successPopup").hide();
+    }
+</script>
+<form action="@Url.Action("Checkout", "Order")" method="post">
+    @for (var i = 0; i < Model.Count; i++)
+    {
+        var item = Model[i];
+        <input type="hidden" name="cartItems[@i].Product.ProductID" value="@item.Product.ProductID" />
+        <input type="hidden" name="cartItems[@i].Quantity" value="@item.Quantity" />
+        <input type="hidden" name="cartItems[@i].Product.Price" value="@item.Product.Price" />
+
+    }
+    <p class="router"><a href="/">Trang chủ</a> / Điện thoại</p>
+
+    <!-- Quantity in Cart -->
+    <h2 class="quantity-in-cart">Có @Model.Count sản phẩm trong giỏ hàng</h2>
+
+    @foreach (var item in Model)
+    {
+
+        <div class="cart-product-container">
+            <a href="@Url.Action("RemoveFromCart", "Cart", new { productId = item.Product.ProductID })">
+                <i class="fa-solid fa-trash-can"></i>
+            </a>
+            <div class="image-product-cart">
+                <img src="@item.Product.ImagePro" alt="@item.Product.NamePro">
+            </div>
+            <div class="cart-product-details">
+                <div class="product-name">
+                    <h2>@item.Product.NamePro</h2>
+
+                    <!-- Product Cart -->
+                    <div class="product-cart">
+                        <div class="product-cart-left">
+                            <div class="quantity">
+                                <label>Số lượng</label>
+                                <div class="quantity-input">
+                                    <button class="quantity-btn minus">-</button>
+                                    <input type="number" name="quantity" value="@item.Quantity" min="1">
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-cart-right">
+                            <div class="price">
+                                <div class="price-real">
+                                    @item.Product.Price.ToString()đ
+                                </div>
+                                <div class="price-original">
+                                    <!-- Assuming you have an original price property in your model -->
+                                    @item.Product.Price.ToString()đ
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Info Customer Container -->
+    <div class="info-customer-container">
+        <div class="info-customer">
+            <div class="left">
+                <p><i class="fa-solid fa-box"></i> Chọn hình thức nhận hàng</p>
+            </div>
+            <div class="right">
+                <label><input type="radio" name="ship"> Giao hàng tận nơi</label>
+                <label><input type="radio" name="ship"> Nhận tại cửa hàng</label>
+            </div>
+        </div>
+
+        <!-- Form for Customer Information -->
+        <p>Thông tin người đặt</p>
+        <div>
+            <label><input type="radio" name="gender"> Anh</label>
+            <label><input type="radio" name="gender"> Chị</label>
+        </div>
+        <label><input type="text" name="name" placeholder="Nhập họ và tên" required></label>
+        <label><input type="text" name="phone-number" placeholder="Nhập số điện thoại" required></label>
+        <label><input type="email" name="email" placeholder="Nhập email (không bắt buộc)"></label>
+    </div>
+
+
+    <!-- Order Details Container -->
+    <div class="order-details-container">
+        <div class="order-details-small">
+            <p><i class="fa-solid fa-divide"></i> Sử dụng voucher hoặc đổi FGold</p>
+        </div>
+        <div class="order-details-accept">
+            <label for=""><input type="checkbox"> Tôi đã đồng ý với <span>Điều khoản dịch vụ</span>, <span>Chính sách thu thập và xử lý dữ liệu cá nhân</span> của FPT Shop.</label>
+        </div>
+        <div class="order-details-product">
+            <div class="left">
+                <div class="text-flex">
+                    <span>Tổng tiền:</span><span>@Model.Sum(item => item.Product.Price * item.Quantity).ToString()đ</span>
+                </div>
+                <!-- Assuming you have properties for discount and voucher discount in your model -->
+                <div class="text-flex"><span>Giảm giá khuyến mãi</span><span>-720.000đ</span></div>
+                <div class="text-flex"><span>Giảm giá voucher</span><span>0đ</span></div>
+            </div>
+            <div class="right">
+                <div class="text-flex">
+                    <span>Cần thanh toán (@Model.Count sản phẩm)</span>
+                    <span class="strong-price">@Model.Sum(item => item.Product.Price * item.Quantity).ToString()đ</span>
+                </div>
+                <button type="submit">Hoàn tất đặt hàng</button>
+            </div>
+        </div>
+    </div>
+
+
+</form>

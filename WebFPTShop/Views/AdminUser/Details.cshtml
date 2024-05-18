@@ -1,0 +1,28 @@
+﻿@model WebFPTShop.Models.AdminUser
+@{
+    ViewBag.Title = "Chi tiết người dùng";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameUser)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RoleUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RoleUser)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

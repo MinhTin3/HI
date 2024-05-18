@@ -1,0 +1,51 @@
+﻿@model WebFPTShop.Models.Category
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Thêm danh mục";
+}
+
+@using (Html.BeginForm("Create", "AdminCategory", FormMethod.Post, new { @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NameCate, "Tên danh mục", new { @class = "control-label" })
+        <div class="input-group">
+            @Html.EditorFor(model => model.NameCate, new { @class = "form-control", @maxlength = "50" })
+        </div>
+        @Html.ValidationMessageFor(model => model.NameCate, "", new { @class = "text-danger" })
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CateIcon, "Icon danh mục", new { @class = "control-label" })
+        <div class="input-group">
+            @Html.EditorFor(model => model.CateIcon, new { @class = "form-control", @id = "iconInput" })
+        </div>
+        <div class="icon-preview" id="iconPreview">
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        @Html.ActionLink("Quay lại", "Index")
+    </div>
+}
+
+@section scripts {
+    <script>
+        // Update icon preview when input changes
+        document.addEventListener("DOMContentLoaded", function () {
+            var iconInput = document.getElementById("iconInput");
+            var iconPreview = document.getElementById("iconPreview");
+
+            iconInput.addEventListener("input", function () {
+                var iconClass = iconInput.value;
+                iconPreview.innerHTML = "<i class='" + iconClass + "'></i>";
+                console.log(iconClass);
+            });
+        });
+    </script>
+}

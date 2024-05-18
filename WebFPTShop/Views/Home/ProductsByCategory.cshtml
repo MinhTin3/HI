@@ -1,0 +1,360 @@
+﻿@model List<WebFPTShop.Models.Product>
+@{
+    ViewBag.Title = "ProductsByCategory";
+
+}
+
+<p class="router"><a href="/">Trang chủ</a> / Điện thoại</p>
+<div class="carousel-container">
+    <div class="carousel">
+        <img src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/10/19/638333355165091996_F-C1_1200x300.png"
+             alt="Image 1">
+        <img src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/10/6/638321846764449015_F-C1_1200x300.png"
+             alt="Image 2">
+        <img src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/10/21/638335085271595452_F-C1_1200x300.png"
+             alt="Image 3">
+        <img src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/10/3/638319207158675908_F-C1_1200x300.png"
+             alt="Image 4">
+        <img src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/10/21/638335077682712516_F-C1_1200x300.png"
+             alt="Image 5">
+        <img src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/10/21/638335077682712516_F-C1_1200x300.png"
+             alt="Image 5">
+        <img src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/10/1/638317476292540238_F-C1_1200x300.png"
+             alt="Image 5">
+        <img src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/8/1/638264776256861272_F-C1_1200x300iP13%201.png"
+             alt="Image 5">
+    </div>
+    <button class="prev" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="next" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="slide-indicators">
+    </div>
+</div>
+<div class="choose-product-container">
+    <div class="filter-section">
+        <div class="filter-sub-producer">
+            <p>Hãng sản xuất</p>
+            <label>
+                <input type="checkbox" name="producer" value="All">
+                Tất cả
+            </label>
+            <label>
+                <input type="checkbox" name="producer" value="Apple">
+                Apple (iPhone)
+            </label>
+            <label>
+                <input type="checkbox" name="producer" value="Samsung">
+                Samsung
+            </label>
+            <label>
+                <input type="checkbox" name="producer" value="Oppo">
+                Oppo
+            </label>
+            <label>
+                <input type="checkbox" name="producer" value="Xiaomi">
+                Xiaomi
+            </label>
+            <label>
+                <input type="checkbox" name="producer" value="Honor">
+                Honor
+            </label>
+            <label>
+                <input type="checkbox" name="producer" value="Vivo">
+                Vivo
+            </label>
+            <label>
+                <input type="checkbox" name="producer" value="Realme">
+                Realme
+            </label>
+            <label>
+                <input type="checkbox" name="producer" value="Asus">
+                Asus
+            </label>
+            <label>
+                <input type="checkbox" name="producer" value="Masstel">
+                Masstel
+            </label>
+            <label>
+                <input type="checkbox" name="producer" value="Nokia">
+                Nokia
+            </label>
+
+        </div>
+        <div class="filter-sub">
+            <p>Mức giá</p>
+            <label>
+                <input type="checkbox" name="price-filter" value="All">
+                Tất cả
+            </label>
+            <label>
+                <input type="checkbox" name="price-filter" value="less-2m">
+                Dưới 2 triệu
+            </label>
+            <label>
+                <input type="checkbox" name="price-filter" value="2-4m">
+                Từ 2 - 4 triệu
+            </label>
+            <label>
+                <input type="checkbox" name="price-filter" value="4-7m">
+                Từ 4 - 7 triệu
+            </label>
+            <label>
+                <input type="checkbox" name="price-filter" value="7-13m">
+                Từ 7 - 13 triệu
+            </label>
+            <label>
+                <input type="checkbox" name="price-filter" value="than-13m">
+                Trên 13 triệu
+            </label>
+
+
+        </div>
+        <div class="filter-sub">
+            <p>Tính năng đặc biệt</p>
+            <label>
+                <input type="checkbox" name="special" value="All">
+                Tất cả
+            </label>
+            <label>
+                <input type="checkbox" name="special" value="fingerprint-security.">
+                Bảo mật vân tay
+            </label>
+            <label>
+                <input type="checkbox" name="special" value="facial-recognition">
+                Nhận diện khuôn mặt
+            </label>
+            <label>
+                <input type="checkbox" name="special" value="water-and-dust-resistance">
+                Chống nước & bụi
+            </label>
+            <label>
+                <input type="checkbox" name="special" value="fast-charging">
+                Sạc nhanh
+            </label>
+            <label>
+                <input type="checkbox" name="special" value="5g">
+                Hỗ trợ 5g
+            </label>
+            <label>
+                <input type="checkbox" name="special" value="wireless-charging">
+                Sạc không dây
+            </label>
+
+
+        </div>
+        <div class="filter-sub">
+            <p>Hiệu năng và Pin</p>
+            <label>
+                <input type="checkbox" name="performance-and-battery" value="Apple">
+                Tất cả
+            </label>
+            <label>
+                <input type="checkbox" name="performance-and-battery" value="Samsung">
+                Dưới 3000 mah
+            </label>
+            <label>
+                <input type="checkbox" name="performance-and-battery" value="Samsung">
+                Pin từ 3000 - 4000 mah
+            </label>
+            <label>
+                <input type="checkbox" name="performance-and-battery" value="Samsung">
+                Pin từ 4000 - 5000 mah
+            </label>
+            <label>
+                <input type="checkbox" name="performance-and-battery" value="Samsung">
+                Siêu trâu: trên 5000 mah
+            </label>
+            <label>
+                <input type="checkbox" name="performance-and-battery" value="Samsung">
+                Chơi game / cấu hình cao
+            </label>
+
+        </div>
+        <div class="filter-sub">
+            <p>Màn hình</p>
+            <label>
+                <input type="checkbox" name="screen" value="Apple">
+                Tất cả
+            </label>
+            <label>
+                <input type="checkbox" name="screen" value="Samsung">
+                Màn hình nhỏ: dưới 5.0 inch
+            </label>
+            <label>
+                <input type="checkbox" name="screen" value="Samsung">
+                Nhỏ gọn vừa tay: dưới 6.0 inch, tràn viền
+            </label>
+            <label>
+                <input type="checkbox" name="screen" value="Samsung">
+                Trên 6.0 inch
+            </label>
+            <label>
+                <input type="checkbox" name="screen" value="Samsung">
+                Màn hình gập
+            </label>
+
+
+
+        </div>
+        <div class="filter-sub">
+            <p>Camera</p>
+            <label>
+                <input type="checkbox" name="camera" value="Apple">
+                Tất cả
+            </label>
+            <label>
+                <input type="checkbox" name="camera" value="Samsung">
+                Quay phim slow mation
+            </label>
+            <label>
+                <input type="checkbox" name="camera" value="Samsung">
+                Ai camera
+            </label>
+            <label>
+                <input type="checkbox" name="camera" value="Samsung">
+                Hiệu ứng làm đẹp
+            </label>
+            <label>
+                <input type="checkbox" name="camera" value="Samsung">
+                Zoom quang học
+            </label>
+            <label>
+                <input type="checkbox" name="camera" value="Samsung">
+                Chông rung ois
+            </label>
+            <label>
+                <input type="checkbox" name="camera" value="Samsung">
+                Chụp macro
+            </label>
+            <label>
+                <input type="checkbox" name="camera" value="Samsung">
+                Chụp góc rộng
+            </label>
+
+
+        </div>
+    </div>
+
+    <div class="product-cart-brand-container">
+        <div class="product-brand">
+            <div class="brand-title">
+                <h1>Điện thoại</h1> <span>(280 sản phẩm)</span>
+            </div>
+            <div class="carousel-brand-container">
+                <div class="carousel-brand">
+                    <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340490193124614_iPhone-Apple@2x.jpg" alt="Ảnh Appple">
+                    <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340490904217021_Samsung@2x.jpg" alt="Ảnh Samsung">
+                    <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340491304997311_Oppo@2x.jpg" alt="Ảnh Oppo">
+                    <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/6/2/637582325361253577_Xiaomi@2x.jpg" alt="Ảnh Xiaomi">
+                    <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/6/29/638236346599640251_Honor.jpg" alt="Ảnh honor">
+                    <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340491898745716_Realme@2x.jpg" alt="Ảnh Realme">
+                    <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2022/8/22/637967768466618842_vivo-icon.jpg" alt="Ảnh vivo">
+                    <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/11/22/637732077455069770_Asus@2x.jpg" alt="Ảnh Asus">
+                    <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340491898901930_Masstel@2x.jpg" alt="Ảnh Masstel">
+                    <img src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340493755614653_Nokia@2x.jpg" alt="Ảnh nokia">
+                </div>
+                <button class="prev-button" onclick="moveCarousel(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="next-button" onclick="moveCarousel(1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+        <div class="product-filter-card-container">
+            <div class="product-filter">
+                <div class="product-filter-left">
+                    <p>Ưu tiên xem: </p>
+                    <ul>
+                        <li>Bán chạy nhất</li>
+                        <li>Trả góp 0%</li>
+                        <li>Giá thấp</li>
+                        <li>Giá cao</li>
+                        <li>Ưu đãi online</li>
+                    </ul>
+                </div>
+                <div class="product-filter-right">
+                    <select name="select-filter-product" id="select-filter-product">
+                        <option value="1">Bán chạy nhất</option>
+                        <option value="2">Trả góp 0%</option>
+                        <option value="3">Giá thấp</option>
+                        <option value="4">Giá cao</option>
+                        <option value="5">Ưu đãi online</option>
+                    </select>
+                    <ul>
+                        <li><i class="fa-solid fa-grip-vertical"></i></li>
+                        <li><i class="fa-solid fa-list"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="product-card-container">
+                @foreach (var product in Model)
+                {
+                    <div class="product-card">
+                        <div class="background-product">
+                            <img src="~/Content/Images/@product.ImagePro"
+                                 alt="@product.NamePro">
+                        </div>
+                        <h3>@product.NamePro</h3>
+                        <p class="price">@product.Price đ</p>
+                        <div class="product-buttons">
+                            <button class="buy-button"> @Html.ActionLink("Mua Ngay", "Details", new { id = product.ProductID })</button>
+                            <button class="compare-button">So Sánh</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="about-product">
+            <p>
+                <strong>
+                    Hãy cùng tìm hiểu về lịch sử và phát triển của điện thoại thông minh, các tính năng và thông số kỹ thuật quan trọng mà bạn cần biết khi nếu muốn mua một chiếc điện thoại phù hợp. FPT Shop cũng sẽ cung cấp cho bạn bảng thông số kỹ thuật và các thương hiệu phổ biến nhất đang kinh doanh để giúp bạn so sánh các sản phẩm và tìm ra chiếc điện thoại phù hợp nhất cho mình.
+                </strong>
+            </p>
+            <img src="https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/hongtt34/1(1).png" alt="">
+            <h2>Lịch sử phát triển của điện thoại thông minh</h2>
+            <h3>Ngày đầu tiên - Sự ra đời của điện thoại di động</h3>
+            <p>Vào ngày 10 tháng 3 năm 1876, nhà khoa học người Scotland - Alexander Graham Bell đã được cấp bằng sáng chế cho việc phát minh ra điện thoại. Sự kiện này đã mở ra cách mạng viễn thông và gắn kết con người từ những nơi xa xôi thông qua giọng nói.</p>
+            <p>
+                Trong giai đoạn đầu của lịch sử điện thoại, các máy điện thoại còn rất lớn và nặng, chỉ có thể được sử dụng tại các địa điểm cố định và có giới hạn về phạm vi. Cuộc đua đầu tiên trong việc phát triển điện thoại di động đã bắt đầu vào những năm 1940 và 1950 khi các nhà nghiên cứu và kỹ sư trên khắp thế giới bắt đầu tìm cách giảm kích thước và trọng lượng của điện thoại để có thể di động hơn.
+
+            </p>
+            <img src="https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/hongtt34/3(1).png" alt="">
+            <p>Các điểm đáng chú ý trong giai đoạn này bao gồm việc ra mắt dịch vụ di động đầu tiên vào năm 1946 tại Hoa Kỳ, và việc giới thiệu các máy di động đầu tiên vào cuối những năm 1970 và đầu những năm 1980.</p>
+            <h3>Từ điện thoại di động đến điện thoại thông minh</h3>
+            <p>Thập kỷ 1990 chứng kiến sự bùng nổ thực sự của công nghệ di động với việc ra mắt các điện thoại di động thông minh (smartphone). Các thiết bị này không chỉ có khả năng gọi điện thoại mà còn tích hợp nhiều tính năng thông minh khác như: gửi tin nhắn, duyệt web, chơi game và chạy các ứng dụng đa dạng,…</p>
+            <p>Motorola StarTAC, ra mắt năm 1996, được coi là một trong những smartphone đầu tiên trên thị trường. Từ đó, sự phát triển của điện thoại thông minh đã vượt bậc với sự xuất hiện của các hệ điều hành như Symbian, BlackBerry OS, iOS và Android.</p>
+            <img src="https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/hongtt34/mau-dien-thoai-dau-tien-1.jpg" alt="">
+            <p>Cùng các công ty công nghệ hàng đầu như Apple, Samsung, HTC và Google đã cùng nhau đưa ra các dòng điện thoại thông minh vượt trội, thúc đẩy cuộc cách mạng công nghệ di động và thay đổi cách mà con người tương tác với nhau và thế giới xung quanh.</p>
+            <h3>Các cách mà smartphone đã thay đổi cuộc sống và công nghệ</h3>
+            <p>Điện thoại thông minh đã có sự tác động mạnh mẽ đến cuộc sống của con người. Chúng đã trở thành một phần không thể thiếu trong cuộc sống hàng ngày, giúp chúng ta giữ liên lạc với gia đình, bạn bè và đồng nghiệp. Ngoài ra, smartphone đã mở ra cơ hội mới cho việc làm việc và giải trí, thông qua ứng dụng và các tính năng tiện ích như: email, video call, mạng xã hội,…</p>
+            <p>Điện thoại thông minh cũng đã thay đổi cách mà chúng ta tiếp cận thông tin và truyền tải tin tức. Nhờ vào tích hợp Internet và ứng dụng tin tức, bạn có thể nắm bắt thông tin mới nhất mọi lúc, mọi nơi. Ngoài ra, công nghệ di động đã thúc đẩy sự phát triển của nền kinh tế số và thương mại điện tử, mở ra cơ hội kinh doanh và tiếp thị trực tuyến.</p>
+            <img src="https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/hongtt34/mau-dien-thoai-dau-tien(1).jpg" alt="">
+            <h2>Các tính năng của điện thoại di động</h2>
+            <p>Điện thoại di động đã trải qua sự phát triển đáng kể và mang đến nhiều tính năng độc đáo giúp chúng ta dễ dàng quản lý, làm việc và giải trí cuộc sống hàng ngày. Dưới đây là những yếu tố quan trọng của điện thoại di động mà bạn nên biết:</p>
+            <h3>Cuộc gọi và tin nhắn</h3>
+            <p>Điện thoại di động cho phép bạn thực hiện và trả lời cuộc gọi một cách thuận tiện. Bạn cũng có thể gửi và nhận tin nhắn văn bản, hình ảnh và âm thanh, giúp duy trì liên lạc với bạn bè và gia đình.</p>
+            <img src="https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/hongtt34/iphone-14-pro-purple-01200.JPG" alt="">
+            <h3>Ghi âm cuộc gọi</h3>
+            <p>Tính năng ghi âm cuộc gọi cho phép bạn lưu lại các cuộc trò chuyện quan trọng để tham khảo, nghe lại sau này.</p>
+            <h3>Chụp ảnh và quay phim</h3>
+            <p>Với camera tích hợp, bạn có thể chụp ảnh và quay video để lưu giữ những khoảnh khắc đáng nhớ.</p>
+            <img src="https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/hongtt34/dien-thoai.png" alt="">
+            <h3>Xem giờ, bấm giờ, đặt báo thức</h3>
+            <p>Điện thoại di động không chỉ để xem giờ hiện tại, mà còn giúp bạn đặt báo thức và bấm giờ trong các hoạt động hàng ngày.</p>
+            <h3>Xem lịch và tạo lời nhắc</h3>
+            <p>Tính năng xem lịch giúp bạn quản lý thời gian hiệu quả, còn việc tạo lời nhắc sẽ giúp bạn không bỏ lỡ các sự kiện quan trọng.</p>
+            <img src="https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/hongtt34/dien-thoai-4.jpg" alt="">
+            <h3>Nghe nhạc và xem video</h3>
+            <p>Điện thoại di động cho phép bạn tải và nghe nhạc, xem video giải trí mọi lúc, mọi nơi.</p>
+            <h3>Sử dụng mạng xã hội và giới hạn thời gian gọi</h3>
+            <p>Bạn có thể sử dụng mạng xã hội trực tiếp từ điện thoại di động để duyệt tin tức, chia sẻ thông tin và kết nối với bạn bè. Ngoài ra, tính năng giới hạn thời gian gọi cũng giúp bạn kiểm soát thời gian sử dụng điện thoại một cách hợp lý.</p>
+            <h3>Đa nhiệm và linh hoạt</h3>
+            <p>Với sự phát triển không ngừng nghỉ của các nhà sản xuất, đến nay trên thị trường còn có sự bổ sung của các smartphone gập. Với thiết kế gập độc đáo, tiên tiến, người dùng có thể gập nhiều góc độ khác nhau, sử dụng điện thoại trở nên linh hoạt hơn bao giờ. Bạn có thể để chiếc smartphone nhỏ gọn, vừa vặn trong túi, vừa có thể dùng thoải mái khi mở smartphone ra.</p>
+            <img src="https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/hongtt34/Samsung-NDA-62.jpg" alt="">
+            <p>Đặc biệt với các dòng thiết kế siêu lớn như smartphone Galaxy Z Fold của Samsung còn cho người dùng trải nghiệm điện thoại tiện lợi như máy tính bảng, đa nhiệm đơn giản, dễ dàng nâng cao hiệu suất công việc.</p>
+            <img src="https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/hongtt34/Samsung-NDA-27.jpg" alt="">
+
+
+        </div>
+    </div>
+
+
+</div>
+
+

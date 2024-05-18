@@ -1,0 +1,13 @@
+﻿@using WebFPTShop.Models
+
+<nav>
+    <ul>
+        @foreach (var category in (IEnumerable<Category>)ViewBag.Categories)
+        {
+            <li>
+                <i class="@category.CateIcon"></i>
+                @Html.ActionLink(category.NameCate, "ProductsByCategory", "Home", new { categoryName = category.NameCate }, null)
+            </li>
+        }
+    </ul>
+</nav>

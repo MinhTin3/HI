@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7d020d1155e7459fbd5e64a6487c82a1" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="WebFPTShopModel.AdminUser" Width="1.5" PointX="10.875" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebFPTShopModel.Category" Width="1.5" PointX="0.875" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebFPTShopModel.Customer" Width="1.5" PointX="5.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebFPTShopModel.Manufacturer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebFPTShopModel.OrderDetail" Width="1.5" PointX="5.375" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebFPTShopModel.OrderPro" Width="1.5" PointX="9.375" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebFPTShopModel.Product" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebFPTShopModel.Rating" Width="1.5" PointX="8.25" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="WebFPTShopModel.FK__Products__IDCate__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="WebFPTShopModel.FK__OrderPro__IDCus__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="WebFPTShopModel.FK__Rating__IDCus__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="WebFPTShopModel.FK__Products__IDManu__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="WebFPTShopModel.FK__OrderDeta__IDOrd__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="WebFPTShopModel.FK__OrderDeta__IDPro__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="WebFPTShopModel.FK__Rating__IDPro__4316F928" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <link href="~/Content/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <div class="f-logo">
+            <a href="/">
+                <img src="https://frt-cms-prod.s3-sgn09.fptcloud.com/logo_a3088aea9f.png" alt="FPTShop Logo"
+                     height="40">
+            </a>
+        </div>
+        @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-inline d-inline-block" }))
+        {
+            <div class="search-bar">
+                <input id="search-input" type="text" name="searchTerm" placeholder="Nhập tên điện thoại, máy tính, phụ kiện... cần tìm">
+                <button title="Tìm kiếm" id="search-button"><i class="fas fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        }
+
+
+        <div class="function-bar">
+            <div class="function-item">
+                <i class="fas fa-solid fa-note-sticky"></i>
+                <span>Thông tin</span>
+            </div>
+            <div class="function-item">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                <span>Thanh toán & tiện ích</span>
+            </div>
+            @Html.Partial("_Account")
+            <div class="function-item">
+                <a class="nav-link" href="~/Home/ViewCart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span> Giỏ hàng</span>
+                </a>
+            </div>
+            <div class="function-item">
+                <a class="nav-link" href="~/AdminUser/Login">
+                    <i class="fa-solid fa-toolbox"></i>
+                    <span> Quản lý</span>
+                </a>
+            </div>
+
+        </div>
+    </header>
+    <!-- navigation -->
+    @Html.Partial("_MenuPartial")
+    <!-- main render -->
+    <main>
+        <div class="content">
+            @RenderBody()
+        </div>
+
+
+    </main>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="popup-close" id="popup-close"><i class="fa-solid fa-xmark"></i></span>
+            <h2>Chọn tùy chọn</h2>
+            <div class="group-link">
+                @Html.ActionLink("Đăng nhập", "Login", "Home", null, new { id = "btn-login", @class = "popup-link" })
+                @Html.ActionLink("Đăng ký", "Register", "Home", null, new { id = "btn-register", @class = "popup-link" })
+            </div>
+        </div>
+    </div>
+    <script>
+        var popup = document.getElementById("popup");
+        var openPopupButton = document.getElementById("open-popup");
+        var popupClose = document.getElementById("popup-close");
+
+        openPopupButton.onclick = function () {
+            popup.style.display = "block";
+        };
+
+
+        // Đóng popup khi nút "X" được nhấn hoặc khi bất kỳ nơi nào ngoài popup được nhấn
+        popupClose.onclick = function () {
+            popup.style.display = "none";
+        };
+
+        window.onclick = function (event) {
+            if (event.target === popup) {
+                popup.style.display = "none";
+            }
+        };
+    </script>
+    <div class="logo-zalo">
+        <a href=""><img src="https://page.widget.zalo.me/static/images/2.0/Logo.svg" alt="zalo"></a>
+    </div>
+    <footer>
+        <div class="footer-columns">
+            <div class="footer-column">
+
+                <ul>
+                    <li><a href="#">Giới thiệu về công ty</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Quy chế hoạt động</a></li>
+                    <li><a href="#">Kiểm tra hóa đơn điện tử</a></li>
+                    <li><a href="#">Tra cứu thông tin bảo hành</a></li>
+                    <li><a href="#">Câu hỏi thường gặp mua hàng</a></li>
+                    <li>
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img1.png" alt="Ảnh vân tay"
+                             height="40"><img src="https://fptshop.com.vn/Content/v4/images/ft-img2.png"
+                                              alt="Ảnh bộ công thương" height="40">
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-column">
+
+                <ul>
+                    <li><a href="#">Tin tuyển dụng</a></li>
+                    <li><a href="#">Tin khuyến mãi</a></li>
+                    <li><a href="#">Hướng dẫn mua online</a></li>
+                    <li><a href="#">Hướng dẫn mua trả góp</a></li>
+                    <li><a href="#">Chính sách trả góp</a></li>
+                    <li><a href="#">Chính sách thu thập và xử lý dữ liệu cá nhân</a></li>
+                    <li>
+                        <p>Chứng nhận:</p>
+                    </li>
+                    <li>
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img3.png" alt="Ảnh IDMCA" height="32">
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img4.png" alt="Ảnh sản phẩm dịch vụ"
+                             height="32">
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img5.png" alt="Ảnh thương hiệu Việt Nam"
+                             height="32">
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-column">
+
+                <ul>
+                    <li><a href="#">Hệ thống cửa hàng</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Hệ thống bảo hành</a></li>
+                    <li><a href="#">Giới thiệu máy đổi trả</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+
+                <ul>
+                    <li>
+                        <p class="contact-title">Tư vấn mua hàng (Miễn phí)</p>
+                        <span class="phone-number">1800 6601</span> (Nhánh 1)
+                    </li>
+                    <li>
+                        <p class="contact-title">Hỗ trợ kỹ thuật</p>
+                    <li><span class="phone-number">1800 6601</span> (Nhánh 2)</li>
+
+                    <li>
+                        <p class="contact-title">Góp ý, khiếu nại (8h00 - 22h00)</p>
+                    <li><span class="phone-number">1800 6616</span></li>
+
+                    <li>
+                        <p class="contact-title">Hỗ trợ thanh toán:</p>
+                    </li>
+                    <li>
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img6.png" alt="Ảnh visa" height="29">
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img7.png" alt="Ảnh master card"
+                             height="29">
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img8.png" alt="Ảnh ATM" height="29">
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-imgamex.png" alt="Ảnh ZaloPay"
+                             height="29"> <br>
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img9.png" alt="Ảnh VN Pay" height="29">
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img12.png" alt="Ảnh Kredivo" height="29">
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img10.png" alt="Ảnh Smart Pay"
+                             height="29">
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img15.png" alt="Ảnh Fox" height="29"> <br>
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img13.png" alt="Ảnh Fox" height="29">
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img14.png" alt="Ảnh Fox" height="29">
+                        <img src="https://fptshop.com.vn/Content/v4/images/alepay.png" alt="Ảnh Fox" height="29">
+                    </li>
+                </ul>
+
+            </div>
+            <div class="footer-column">
+                <p class="contact-title">
+                    Kết nối với chúng tôi: <img src="https://fptshop.com.vn/Content/v4/images/icon-facebook.png" alt="Ảnh facebook" width="24">
+                    <img src="https://fptshop.com.vn/Content/v4/images/icon-zalo.png" alt="Ảnh zalo" width="24">
+                </p>
+                <ul>
+                    <li>
+                        <p class="contact-title">Website cùng FPT Retail:</p>
+                    </li>
+                    <li>Cửa hàng uỷ quyền bởi Apple:</li>
+                    <li>
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img16.png" alt="Ảnh F.Studio by FPT"
+                             height="24">
+                    </li>
+                    <li>Trung tâm bảo hành uỷ quyền Apple:</li>
+                    <li>
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img17.png" alt="Ảnh F.Care by FPT"
+                             height="24">
+                    </li>
+                    <li>Chuỗi nhà thuốc:</li>
+                    <li>
+                        <img src="https://fptshop.com.vn/Content/v4/images/ft-img18.png" alt="Ảnh chuỗi nhà thuốc"
+                             height="24">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>
+                &copy; 2007 - 2023 Công Ty Cổ Phần Bán Lẻ Kỹ Thuật Số FPT / Địa chỉ: 261 - 263 Khánh Hội, P2, Q4, TP. Hồ
+                Chí Minh / GPĐKKD số 0311609355 do Sở KHĐT TP.HCM cấp ngày 08/03/2012. GP số 47/GP-TTĐT do sở TTTT TP
+                HCM cấp ngày 02/07/2018. Điện thoại: <span>(028) 7302 3456</span>. Email: <span>fptshop@fpt.com</span>.
+                Chịu trách nhiệm nội dung:
+                Nguyễn Trịnh Nhật Linh.
+            </p>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/cart.js")
+    @Scripts.Render("~/Scripts/main.js")
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

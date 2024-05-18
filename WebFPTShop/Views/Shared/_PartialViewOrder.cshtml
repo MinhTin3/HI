@@ -1,0 +1,33 @@
+﻿
+
+<div class="container">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Mã đơn hàng</th>
+                <th>Ngày đặt hàng</th>
+                <th>Khách hàng</th>
+                <th>Địa chỉ giao hàng</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.ID</td>
+                    <td>@order.DateOrder</td>
+                    <td>@order.Customer.NameCus</td>
+                    <td>@order.AddressDeliverry</td>
+                    <td>
+                        @Html.ActionLink("Chi tiết", "Details", "AdminOrderPro", new { id = order.ID }, new { @class = "btn btn-info btn-sm" })
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

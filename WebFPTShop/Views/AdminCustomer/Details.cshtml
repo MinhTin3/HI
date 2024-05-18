@@ -1,0 +1,18 @@
+﻿@model IEnumerable<WebFPTShop.Models.OrderPro>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Chi tiết khách hàng";
+}
+
+
+<div>
+    <strong>Mã khách hàng:</strong> @ViewBag.Customer.IDCus <br />
+    <strong>Tên khách hàng:</strong> @ViewBag.Customer.NameCus <br />
+    <strong>Điện thoại:</strong> @ViewBag.Customer.PhoneCus <br />
+    <strong>Email:</strong> @ViewBag.Customer.EmailCus <br />
+    <strong>Địa chỉ:</strong> @ViewBag.Customer.AddressCus
+</div>
+
+<hr />
+
+@Html.Partial("_PartialViewOrder")

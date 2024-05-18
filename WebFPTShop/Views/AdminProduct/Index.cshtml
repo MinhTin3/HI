@@ -1,0 +1,127 @@
+﻿@model IEnumerable<WebFPTShop.Models.Product>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Danh sách sản phẩm";
+}
+<style>
+    .table td {
+        max-width: 200px; /* Set the maximum width for the table cells */
+        overflow: hidden;
+        word-wrap: break-word; /* Allow the text to wrap to the next line */
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center">
+    <div class="col-6">
+        <a class="btn btn-primary" href="@Url.Action("Create", "AdminProduct")">
+            <i class="fas fa-plus"></i> Thêm sản phẩm
+        </a>
+    </div>
+
+</div>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Hình ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng tồn</th>
+            <th>Chủng loại</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td><img src="~/Content/Images/@product.ImagePro" alt="Product Image" style="max-height: 100px;" /></td>
+                <td>@product.NamePro</td>
+
+                <td>@product.Price</td>
+                <td>
+                    @product.SoLuongTon
+                </td>
+                <td>@(product.Category != null ? product.Category.NameCate : "") </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = product.ProductID }, new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = product.ProductID }, new { @class = "btn btn-warning btn-sm" })
+                    <button class="btn btn-danger btn-sm btn-delete" data-id="@product.ProductID">
+                        Xóa
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div id="error-message" class="alert alert-danger" style="display:none;"></div>
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xóa sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xóa sản phẩm này?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-danger" id="btnConfirmDelete">Xác nhận xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        // Ajax request to delete a product
+        $(document).ready(function () {
+            $(".btn-delete").click(function () {
+                var ProductID = $(this).data("id");
+                $('#confirmDeleteModal').modal('show');
+
+                $("#btnConfirmDelete").click(function () {
+                    $.ajax({
+                        url: '@Url.Action("Delete", "AdminProduct")',
+                        type: 'POST',
+                        data: { id: ProductID },
+                        success: function (result) {
+                            if (result.success) {
+                                location.reload();
+                            } else {
+                                // Display error message in the existing div
+                                $("#error-message").html(result.message);
+                                $("#error-message").show();
+
+                                // Hide the error message after 3 seconds
+                                setTimeout(function () {
+                                    $("#error-message").hide();
+                                }, 3000);
+                            }
+                        },
+                        error: function () {
+                            // Handle AJAX error here if needed
+                            $("#error-message").html('<div class="alert alert-danger">Xóa không thành công. Đã xảy ra lỗi.</div>');
+                            $("#error-message").show();
+
+                            // Hide the error message after 3 seconds
+                            setTimeout(function () {
+                                $("#error-message").hide();
+                            }, 3000);
+                        },
+                        complete: function () {
+                            // Close the modal after the operation is complete
+                            $('#confirmDeleteModal').modal('hide');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+}
+

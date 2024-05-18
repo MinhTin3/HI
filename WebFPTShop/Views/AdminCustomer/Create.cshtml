@@ -1,0 +1,55 @@
+﻿@model WebFPTShop.Models.Customer
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Thêm khách hàng";
+}
+
+@using (Html.BeginForm("Create", "AdminCustomer", FormMethod.Post, new { @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NameCus, "Tên khách hàng", new { @class = "control-label" })
+        <div class="input-group">
+            @Html.EditorFor(model => model.NameCus, new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(model => model.NameCus, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PhoneCus, "Số điện thoại", new { @class = "control-label" })
+        <div class="input-group">
+            @Html.EditorFor(model => model.PhoneCus, new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(model => model.PhoneCus, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmailCus, "Email", new { @class = "control-label" })
+        <div class="input-group">
+            @Html.EditorFor(model => model.EmailCus, new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(model => model.EmailCus, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.AddressCus, "Địa chỉ", new { @class = "control-label" })
+        <div class="input-group">
+            @Html.EditorFor(model => model.AddressCus, new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(model => model.AddressCus, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PassCus, "Mật khẩu", new { @class = "control-label" })
+        <div class="input-group">
+            @Html.EditorFor(model => model.PassCus, new { @class = "form-control", type = "password" })
+        </div>
+        @Html.ValidationMessageFor(model => model.PassCus, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        @Html.ActionLink("Quay lại", "Index")
+    </div>
+}

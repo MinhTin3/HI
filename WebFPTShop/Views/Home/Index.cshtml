@@ -1,0 +1,165 @@
+﻿@model List<WebFPTShop.Models.Product>
+
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<p class="router"><a href="/">Trang chủ</a> / Điện thoại</p>
+<div class="image-title-home">
+    <img src="https://images.fpt.shop/unsafe/fit-in/filters:quality(80):fill(transparent)/fptshop.com.vn/Uploads/Originals/2023/11/1/638344352321866516_desk-header.png"
+         alt="">
+</div>
+<div class="category-container">
+    <div class="category-item-center">
+        <div class="circle-image">
+            <a href="">
+                <img src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2015/ic-dienthoai-desktop.png"
+                     alt="">
+            </a>
+        </div>
+        <span>Điện thoại</span>
+    </div>
+    <div class="category-item-center">
+        <div class="circle-image">
+            <a href="">
+                <img src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2022/iconcate/icon-laptop.png"
+                     alt="">
+            </a>
+        </div>
+        <span>Laptop</span>
+    </div>
+    <div class="category-item-center">
+        <div class="circle-image">
+            <a href="">
+                <img src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2022/iconcate/icon-pc.png"
+                     alt="">
+            </a>
+        </div>
+        <span>PC</span>
+    </div>
+    <div class="category-item-center">
+        <div class="circle-image">
+            <a href="">
+                <img src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2015/icon-mtb-desk.png"
+                     alt="">
+            </a>
+        </div>
+        <span>Máy tính bảng</span>
+    </div>
+    <div class="category-item-center">
+        <div class="circle-image">
+            <a href="">
+                <img src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2022/iconcate/icon-smart.png"
+                     alt="">
+            </a>
+        </div>
+        <span>Thiết bị thông minh</span>
+    </div>
+
+    <div class="category-item-center">
+        <div class="circle-image">
+            <a href="">
+                <img src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2022/iconcate/icon-houseware.png"
+                     alt="">
+            </a>
+        </div>
+        <span>Điện máy gia dụng</span>
+    </div>
+
+    <div class="category-item-center">
+        <div class="circle-image">
+            <a href="">
+                <img src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2015/ic-apple-desktop.png"
+                     alt="">
+            </a>
+        </div>
+        <span>Apple</span>
+    </div>
+
+    <div class="category-item-center">
+        <div class="circle-image">
+            <a href="">
+                <img src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2015/destop-ic-samsung.png"
+                     alt="">
+            </a>
+        </div>
+        <span>Samsung</span>
+    </div>
+    <div class="category-item-center">
+        <div class="circle-image">
+            <a href="">
+                <img src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2022/iconcate/icon-smartwatch.png"
+                     alt="">
+            </a>
+        </div>
+        <span>Đồng hồ thông minh</span>
+    </div>
+    <div class="category-item-center">
+        <div class="circle-image">
+            <a href="">
+                <img src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2022/iconcate/icon-accessories.png"
+                     alt="">
+            </a>
+        </div>
+        <span>Phụ kiện</span>
+    </div>
+    <div class="category-item-center">
+        <div class="circle-image">
+            <a href="">
+                <img src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2022/iconcate/icon-screen.png"
+                     alt="">
+            </a>
+        </div>
+        <span>Màn hình</span>
+    </div>
+    <div class="category-item-center">
+        <div class="circle-image">
+            <a href="">
+                <img src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2022/iconcate/icon-tcdm.png"
+                     alt="">
+            </a>
+        </div>
+        <span>Máy cũ</span>
+    </div>
+
+</div>
+
+
+
+@{
+    var groupedProducts = Model.GroupBy(p => p.IDCate).ToList();
+}
+
+@foreach (var group in groupedProducts)
+{
+    <div class="image-title-home">
+        <img src="https://images.fpt.shop/unsafe/fit-in/1200x200/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/10/31/638343919242879667_F-H5_1200x200.png"
+             alt="">
+    </div>
+    <div class="product-home-container">
+        <h2>@group.First().Category.NameCate</h2>
+        <div class="product-card-container">
+            @foreach (var product in group)
+            {
+                <div class="product-card">
+                    <div class="background-product">
+                        <img src="~/Content/Images/@product.ImagePro" alt="@product.NamePro">
+                    </div>
+                    <h3>@product.NamePro</h3>
+                    <p class="price">
+                    <script>document.write((@product.Price).toLocaleString('vi-VN'));</script> đ</p>
+                    <div class="product-buttons">
+                        <button class="buy-button">@Html.ActionLink("Xem Ngay", "Details", new { id = product.ProductID })</button>
+                        <button class="compare-button">So Sánh</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+
+
+

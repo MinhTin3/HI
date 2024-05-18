@@ -1,0 +1,43 @@
+﻿@model List<WebFPTShop.Models.Product>
+@{
+    ViewBag.Title = "Kết quả tìm kiếm cho";
+}
+
+<p class="router"><a href="/">Tìm kiếm</a></p>
+
+
+
+@{
+    var groupedProducts = Model.GroupBy(p => p.IDCate).ToList();
+}
+<h2>Kết quả tìm kiếm cho từ khóa " @ViewBag.SearchTerm ".</h2>
+<div class="product-home-container">
+    @foreach (var group in groupedProducts)
+    {
+
+
+
+        <div class="product-card-container">
+            @foreach (var product in group)
+            {
+                <div class="product-card">
+                    <div class="background-product">
+                        <img src="~/Content/Images/@product.ImagePro" alt="@product.NamePro">
+                    </div>
+                    <h3>@product.NamePro</h3>
+                    <p class="price">
+                        <script>document.write((@product.Price).toLocaleString('vi-VN'));</script> đ
+                    </p>
+                    <div class="product-buttons">
+                        <button class="buy-button">@Html.ActionLink("Mua Ngay", "Details", new { id = product.ProductID })</button>
+                        <button class="compare-button">So Sánh</button>
+                    </div>
+                </div>
+            }
+        </div>
+
+    }
+</div>
+
+
+

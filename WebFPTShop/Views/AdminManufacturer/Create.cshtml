@@ -1,0 +1,26 @@
+﻿@model WebFPTShop.Models.Manufacturer
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Thêm nhà sản xuất";
+}
+
+@using (Html.BeginForm("Create", "AdminManufacturer", FormMethod.Post, new { @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NameManu, "Tên nhà sản xuất", new { @class = "control-label" })
+        <div class="input-group">
+            @Html.EditorFor(model => model.NameManu, new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(model => model.NameManu, "", new { @class = "text-danger" })
+    </div>
+
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        @Html.ActionLink("Quay lại", "Index")
+    </div>
+}
+

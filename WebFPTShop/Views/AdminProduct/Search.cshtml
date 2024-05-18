@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Tìm kiếm";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center">
+    <div class="col-6">
+        <a class="btn btn-primary" href="@Url.Action("Create", "AdminProduct")">
+            <i class="fas fa-plus"></i> Thêm sản phẩm
+        </a>
+    </div>
+    <div class="col-6 text-right">
+        <form method="GET" action="@Url.Action("Search", "AdminProduct")" class="form-inline d-inline-block">
+            <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Tìm kiếm sản phẩm">
+            <button class="btn btn-primary" id="searchButton" type="submit">
+                <i class="fas fa-search"></i> Tìm kiếm
+            </button>
+        </form>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Hình ảnh</th>
+            <th>ID</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td><img src="@product.ImagePro" alt="Product Image" style="max-height: 100px;" /></td>
+                <td>@product.ProductID</td>
+                <td>@product.NamePro</td>
+
+                <td>@product.Price</td>
+
+                <td>
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = product.ProductID }, new { @class = "btn btn-warning btn-sm" })
+                    <button class="btn btn-danger btn-sm btn-delete" data-id="@product.ProductID">
+                        Xóa
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        // Ajax request to delete a product
+        $(document).ready(function () {
+            $(".btn-delete").click(function () {
+                var ProductID = $(this).data("id");
+                if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
+                    $.ajax({
+                        url: '@Url.Action("Delete", "AdminProduct")',
+                        type: 'POST',
+                        data: { id: ProductID },
+                        success: function (result) {
+                            if (result.success) {
+                                location.reload();
+                            } else {
+                                alert("Xóa không thành công.");
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

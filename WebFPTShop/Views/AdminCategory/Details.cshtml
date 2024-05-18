@@ -1,0 +1,58 @@
+﻿@model WebFPTShop.Models.Category
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.NameCate;
+}
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            ID:
+        </dt>
+        <dd>
+            @Model.IDCate
+        </dd>
+        <dt>
+            Tên danh mục:
+        </dt>
+        <dd>
+            @Model.NameCate
+        </dd>
+        <dt>
+            Icon danh mục:
+        </dt>
+        <dd>
+            @Model.CateIcon
+        </dd>
+    </dl>
+</div>
+
+<h3 class="text-center">Sản phẩm thuộc danh mục</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Hình ảnh</th>
+            <th>ID</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Chi tiết</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td><img src="~/Content/Images/@product.ImagePro" alt="Product Image" style="max-height: 100px;" /></td>
+                <td>@product.ProductID</td>
+                <td>@product.NamePro</td>
+
+                <td>@product.Price</td>
+                <td style="max-width: 200px; overflow: hidden; word-wrap: break-word;">
+                    @product.DescriptionPro
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

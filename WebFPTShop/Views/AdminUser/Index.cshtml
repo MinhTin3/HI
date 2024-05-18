@@ -1,0 +1,95 @@
+﻿@model IEnumerable<WebFPTShop.Models.AdminUser>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Danh sách người dùng";
+}
+
+<div class="d-flex justify-content-between align-items-center">
+    <div class="col-6">
+        <a class="btn btn-primary" href="@Url.Action("Create")">
+            <i class="fas fa-plus"></i> Thêm người dùng
+        </a>
+    </div>
+
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên người dùng</th>
+            <th>Vai trò</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.ID</td>
+                <td>@user.NameUser</td>
+                <td>@(user.RoleUser == true ? "Admin" : "User")</td>
+                <td>
+                    @if (Model.Count() >= 5)
+                    {
+                        <a href="@Url.Action("Details", new { id = user.ID })" class="btn btn-primary btn-sm">Chi tiết</a>
+                    }
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = user.ID }, new { @class = "btn btn-warning btn-sm" })
+                    <button class="btn btn-danger btn-sm btn-delete" data-id="@user.ID" data-toggle="modal" data-target="#deleteModal">
+                        Xóa
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Bootstrap delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa người dùng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có muốn xóa người dùng này?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var userIdToDelete;
+
+            $(".btn-delete").click(function () {
+                userIdToDelete = $(this).data("id");
+            });
+
+            $("#confirmDelete").click(function () {
+                $.ajax({
+                    url: '@Url.Action("Delete", "AdminUser")',
+                    type: 'POST',
+                    data: { id: userIdToDelete },
+                    success: function (result) {
+                        if (result.success) {
+                            location.reload(); 
+                        } else {
+
+                        }
+                    }
+                });
+                $('#deleteModal').modal('hide'); 
+            });
+        });
+    </script>
+}

@@ -1,0 +1,41 @@
+﻿@model WebFPTShop.Models.AdminUser
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Thêm người dùng";
+}
+
+@using (Html.BeginForm("Create", "AdminUser", FormMethod.Post, new { @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NameUser, "Tên người dùng", new { @class = "control-label" })
+        <div class="input-group">
+            @Html.EditorFor(model => model.NameUser, new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(model => model.NameUser, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RoleUser, "Vai trò", new { @class = "control-label" })
+        <div class="input-group">
+            @Html.EditorFor(model => model.RoleUser, new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(model => model.RoleUser, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PasswordUser, "Mật khẩu", new { @class = "control-label" })
+        <div class="input-group">
+            @Html.PasswordFor(model => model.PasswordUser, new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(model => model.PasswordUser, "", new { @class = "text-danger" })
+    </div>
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        @Html.ActionLink("Quay lại", "Index")
+    </div>
+}

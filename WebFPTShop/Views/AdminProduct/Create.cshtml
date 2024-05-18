@@ -1,0 +1,111 @@
+﻿@model WebFPTShop.Models.Product
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Thêm sản phẩm";
+}
+
+
+@using (Html.BeginForm("Create", "AdminProduct", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NamePro, "Tên sản phẩm", new { @class = "control-label" })
+        <div class="input-group full-width">
+            @Html.EditorFor(model => model.NamePro, new { @class = "form-control full-width no-max-width" })
+        </div>
+        @Html.ValidationMessageFor(model => model.NamePro, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DescriptionPro, "Chi tiết sản phẩm", new { @class = "control-label" })
+        <div class="input-group text-area-full-width">
+            @Html.TextAreaFor(model => model.DescriptionPro, new { @class = "form-control text-area-full-width no-max-width", rows = 4 })
+        </div>
+        @Html.ValidationMessageFor(model => model.DescriptionPro, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IDCate, "Danh mục", new { @class = "control-label" })
+        <div class="input-group full-width">
+            @Html.DropDownListFor(model => model.IDCate, ViewBag.CategorySelectList as SelectList, "Chọn danh mục", new { @class = "form-control full-width no-max-width" })
+        </div>
+        @Html.ValidationMessageFor(model => model.IDCate, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IDManu, "Nhà sản xuất", new { @class = "control-label" })
+        <div class="input-group full-width">
+            @Html.DropDownListFor(model => model.IDManu, ViewBag.ManuList as SelectList, "Chọn nhà sản xuất", new { @class = "form-control full-width no-max-width" })
+        </div>
+        @Html.ValidationMessageFor(model => model.IDManu, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, "Giá", new { @class = "control-label" })
+        <div class="input-group full-width">
+            @Html.EditorFor(model => model.Price, new { @class = "form-control full-width no-max-width", @min = 1 })
+        </div>
+        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SoLuongTon, "Số lượng tồn", new { @class = "control-label" })
+        <div class="input-group full-width">
+            @Html.EditorFor(model => model.SoLuongTon, new { @class = "form-control full-width no-max-width", @min = 1 })
+        </div>
+        @Html.ValidationMessageFor(model => model.SoLuongTon, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Screen, "Màn hình", new { @class = "control-label" })
+        <div class="input-group full-width">
+            @Html.EditorFor(model => model.Screen, new { @class = "form-control full-width no-max-width" })
+        </div>
+        @Html.ValidationMessageFor(model => model.Screen, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Camera, "Camera", new { @class = "control-label" })
+        <div class="input-group full-width">
+            @Html.EditorFor(model => model.Camera, new { @class = "form-control full-width no-max-width" })
+        </div>
+        @Html.ValidationMessageFor(model => model.Camera, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CameraSelfie, "Camera Selfie", new { @class = "control-label" })
+        <div class="input-group full-width">
+            @Html.EditorFor(model => model.CameraSelfie, new { @class = "form-control full-width no-max-width" })
+        </div>
+        @Html.ValidationMessageFor(model => model.CameraSelfie, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CPU, "CPU", new { @class = "control-label" })
+        <div class="input-group full-width">
+            @Html.EditorFor(model => model.CPU, new { @class = "form-control full-width no-max-width" })
+        </div>
+        @Html.ValidationMessageFor(model => model.CPU, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Store, "Store", new { @class = "control-label" })
+        <div class="input-group full-width">
+            @Html.EditorFor(model => model.Store, new { @class = "form-control full-width no-max-width", @min = 1 })
+        </div>
+        @Html.ValidationMessageFor(model => model.Store, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("ImageFile", "Hình ảnh", new { @class = "control-label" })
+        <div class="input-group full-width">
+            <input type="file" name="ImageFile" class="form-control full-width no-max-width" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+        @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary" })
+    </div>
+}

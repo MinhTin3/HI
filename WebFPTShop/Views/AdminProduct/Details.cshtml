@@ -1,0 +1,41 @@
+﻿@model WebFPTShop.Models.Product
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("_PartialViewProductDetail")
+
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            // Function to check if the target URL is the Index page
+            function isIndexPage(url) {
+                // Modify the condition based on your URL structure
+                return url.toLowerCase().includes('/adminproduct/index');
+            }
+
+            // Intercept clicks on links
+            $('a').click(function (event) {
+                var targetUrl = $(this).attr('href');
+                if (!isIndexPage(targetUrl)) {
+                    event.preventDefault();
+                }
+            });
+
+            $('button').click(function (event) {
+                var targetUrl = $(this).data('href') || $(this).attr('href');
+                if (!isIndexPage(targetUrl)) {
+                    // Kiểm tra xem URL có phải là trang Details không
+                    if (window.location.href.toLowerCase().includes('/home/details')) {
+                        event.preventDefault();
+                        alert('Cannot search on Details page.');
+                    }
+                }
+            });
+
+
+        });
+
+    </script>
+}

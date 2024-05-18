@@ -1,0 +1,89 @@
+﻿@model IEnumerable<WebFPTShop.Models.Manufacturer>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Kết hợp với _AdminLayout
+    ViewBag.Title = "Danh sách nhà sản xuất";
+}
+
+<a class="btn btn-primary" href="@Url.Action("Create", "AdminManufacturer")">
+    <i class="fas fa-plus"></i> Thêm nhà sản xuất
+</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên danh mục</th>
+
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var manu in Model)
+        {
+            <tr>
+                <td>@manu.IDManu</td>
+                <td>@manu.NameManu</td>
+
+                <td>
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = manu.IDManu }, new { @class = "btn btn-warning btn-sm" })
+
+                    <!-- Button to trigger the delete modal -->
+                    <button class="btn btn-danger btn-sm btn-delete" data-id="@manu.IDManu" data-toggle="modal" data-target="#deleteModal">
+                        Xóa
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Bootstrap delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa nhà sản xuất</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có muốn xóa nhà sản xuất này?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        // Ajax request to delete a category
+        $(document).ready(function () {
+            var menuIdToDelete;
+
+            $(".btn-delete").click(function () {
+                menuIdToDelete = $(this).data("id");
+            });
+
+            // Confirm delete action
+            $("#confirmDelete").click(function () {
+                $.ajax({
+                    url: '@Url.Action("Delete", "AdminManufacturer")',
+                    type: 'POST',
+                    data: { id: menuIdToDelete },
+                    success: function (result) {
+                        if (result.success) {
+                            location.reload(); // Reload the page after successful deletion
+                        } else {
+
+                        }
+                    }
+                });
+                $('#deleteModal').modal('hide'); // Hide the modal after performing delete action
+            });
+        });
+    </script>
+}
